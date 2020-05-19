@@ -13,7 +13,7 @@
 #import <objc/runtime.h>
 #import <vector>
 
-#import <UIKit/UIKit.h>
+#import "FBDefine.h"
 
 #import "FBIvarReference.h"
 #import "FBObjectInStructReference.h"

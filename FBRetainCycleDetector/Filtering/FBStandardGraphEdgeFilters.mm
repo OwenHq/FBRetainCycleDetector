@@ -10,7 +10,7 @@
 
 #import <objc/runtime.h>
 
-#import <UIKit/UIKit.h>
+#import "FBDefine.h"
 
 #import "FBObjectiveCGraphElement.h"
 #import "FBRetainCycleDetector.h"
@@ -59,11 +59,13 @@ NSArray<FBGraphEdgeFilterBlock> *FBGetStandardGraphEdgeFilters() {
 
   return @[FBFilterBlockWithObjectIvarRelation([UIView class], @"_subviewCache"),
            FBFilterBlockWithObjectIvarRelation(heldActionClass, @"m_target"),
+#if !TARGET_OS_OSX
            FBFilterBlockWithObjectToManyIvarsRelation([UITouch class],
                                                       [NSSet setWithArray:@[@"_view",
                                                                             @"_gestureRecognizers",
                                                                             @"_window",
                                                                             @"_warpedIntoView"]]),
+#endif
            FBFilterBlockWithObjectToManyIvarsRelation(transitionContextClass,
                                                       [NSSet setWithArray:@[@"_toViewController",
                                                                             @"_fromViewController"]])];
